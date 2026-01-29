@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Papa from 'papaparse';
@@ -27,6 +27,9 @@ import {
   Eye
 } from 'lucide-react';
 
+// Lazy load the preview component (uses react-konva)
+const CertificatePreview = lazy(() => import('@/components/generate/CertificatePreview'));
+
 interface CsvRow {
   [key: string]: string;
 }
@@ -46,6 +49,7 @@ export default function Generate() {
   const [sendEmails, setSendEmails] = useState(true);
   const [emailColumn, setEmailColumn] = useState('email');
   const [isGenerating, setIsGenerating] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
   const [generationProgress, setGenerationProgress] = useState(0);
 
   useEffect(() => {
@@ -443,6 +447,14 @@ export default function Generate() {
               <Button variant="outline" onClick={() => setStep(2)} className="flex-1">
                 Back
               </Button>
+              <Button
+                variant="secondary"
+                onClick={() => setShowPreview(true)}
+                disabled={!selectedTemplate || csvData.length === 0}
+              >
+                <Eye className="w-4 h-4 mr-2" />
+                Preview
+              </Button>
               <Button onClick={handleGenerate} disabled={isGenerating} className="flex-1">
                 {isGenerating ? (
                   <>Generating...</>
@@ -454,6 +466,18 @@ export default function Generate() {
                 )}
               </Button>
             </div>
+
+            {/* Certificate Preview Modal */}
+            <Suspense fallback={null}>
+              <CertificatePreview
+                open={showPreview}
+                onOpenChange={setShowPreview}
+                template={selectedTemplate || null}
+                templateFields={templateFields}
+                csvData={csvData}
+                fieldMapping={fieldMapping}
+              />
+            </Suspense>
 
             {isGenerating && (
               <Card>
