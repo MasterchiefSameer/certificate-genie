@@ -1,3 +1,4 @@
+// Template Editor with Konva.js canvas
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Stage, Layer, Image as KonvaImage, Text, Transformer, Rect } from 'react-konva';
