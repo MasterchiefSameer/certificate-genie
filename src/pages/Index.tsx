@@ -122,30 +122,6 @@ export default function Index() {
             </div>
           </motion.div>
 
-          {/* Hero Image */}
-          <motion.div
-            className="mt-16 relative"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <div className="rounded-xl border bg-card shadow-2xl overflow-hidden">
-              <div className="bg-muted/50 px-4 py-3 border-b flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-destructive/50" />
-                <div className="w-3 h-3 rounded-full bg-warning/50" />
-                <div className="w-3 h-3 rounded-full bg-success/50" />
-              </div>
-              <div className="p-6 bg-gradient-to-br from-muted/30 to-muted/10">
-                <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
-                  <div className="text-center">
-                    <FileImage className="w-16 h-16 mx-auto mb-4 text-muted-foreground/50" />
-                    <p className="text-muted-foreground">Certificate Editor Preview</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="absolute -z-10 inset-0 bg-gradient-to-r from-primary/20 via-primary/5 to-primary/20 blur-3xl" />
-          </motion.div>
         </div>
       </section>
 
