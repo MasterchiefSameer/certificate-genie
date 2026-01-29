@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { z } from 'zod';
 import { useAuth } from '@/hooks/useAuth';
@@ -164,12 +164,12 @@ export default function Auth() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.4 }}
         >
-          <div className="lg:hidden flex items-center justify-center gap-3 mb-8">
+          <Link to="/" className="lg:hidden flex items-center justify-center gap-3 mb-8 hover:opacity-80 transition-opacity">
             <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
               <Award className="w-5 h-5 text-primary-foreground" />
             </div>
             <span className="text-2xl font-bold">CertifyPro</span>
-          </div>
+          </Link>
 
           <Card className="border-0 shadow-xl">
             <CardHeader className="space-y-1 pb-4">
